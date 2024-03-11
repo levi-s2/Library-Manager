@@ -19,8 +19,8 @@ def find_genre_by_name():
     genre = Genre.find_by_name(name)
     print(genre) if genre else print(
         f'\ngenre {name} not found')
-
-
+    
+    
 def create_genre():
     name = input("\nEnter the genre's name: ")
     try:
@@ -69,9 +69,9 @@ def find_book_by_title():
 def create_book():
     title = input("Enter the book's title: ")
     author = input("Enter the book's author: ")
-    genre_name = input("Enter the book's genre name:")
+    genre_id = input("Enter the book's genre ID:")
     try:
-        book = Book.create(title, author, genre_name)
+        book = Book.create(title, author, int(genre_id))
         print(f'Success: {book}')
     except Exception as exc:
         print("Error creating book: ", exc)

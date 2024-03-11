@@ -11,6 +11,7 @@ class Book:
         self.title = title
         self.author = author
         self.genre_id = genre_id
+        
 
     def __repr__(self):
         return (
@@ -28,7 +29,7 @@ class Book:
             self._title = title
         else:
             raise ValueError(
-                "title must be a non-empty string"
+                "title can`t be an empty string"
             )
 
     @property
@@ -41,7 +42,7 @@ class Book:
             self._author = author
         else:
             raise ValueError(
-                "author must be a non-empty string"
+                "author can`t be an empty string"
             )
 
     @property

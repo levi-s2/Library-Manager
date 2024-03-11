@@ -54,7 +54,7 @@ class Genre:
             VALUES (?)
         """
 
-        CURSOR.execute(sql, (self.name))
+        CURSOR.execute(sql, (self.name,))
         CONN.commit()
 
         self.id = CURSOR.lastrowid
