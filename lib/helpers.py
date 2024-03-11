@@ -6,8 +6,6 @@ def exit_program():
     print("\nThank you for using the Library Manager app, see you soon!")
     exit()
 
-# We'll implement the genre functions in this lesson
-
 
 def list_genres():
     genres = Genre.get_all()
@@ -54,8 +52,6 @@ def delete_genre():
     else:
         print(f'\ngenre {id_} not found')
 
-
-# You'll implement the book functions in the lab
 
 def list_books():
     books = Book.get_all()

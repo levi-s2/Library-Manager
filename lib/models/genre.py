@@ -3,8 +3,6 @@ from models.__init__ import CURSOR, CONN
 
 
 class Genre:
-
-    # Dictionary of objects saved to the database.
     all = {}
 
     def __init__(self, name, id=None):
@@ -91,23 +89,18 @@ class Genre:
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
 
-        # Delete the dictionary entry using id as the key
         del type(self).all[self.id]
 
-        # Set the id to None
         self.id = None
 
     @classmethod
     def instance_from_db(cls, row):
         """Return a Genre object having the attribute values from the table row."""
 
-        # Check the dictionary for an existing instance using the row's primary key
         genre = cls.all.get(row[0])
         if genre:
-            # ensure attributes match row values in case local instance was modified
             genre.name = row[1]
         else:
-            # not in dictionary, create new instance and add to dictionary
             genre = cls(row[1])
             genre.id = row[0]
             cls.all[genre.id] = genre

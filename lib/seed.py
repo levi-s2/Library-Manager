@@ -10,7 +10,4 @@ def seed_database():
     Genre.create_table()
     Book.create_table()
 
-    # Create seed data
-
 seed_database()
-print("Seeded database")

@@ -44,7 +44,7 @@ def main():
 
 
 def menu():
-    print("\nPlease select an option:")
+    print("\nTo navigate the Program, please enter the number of the desired option:")
     print("\n0. Exit the program")
     print("\n1. Get a list of all Genres")
     print("\n2: Create a new genre")

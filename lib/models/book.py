@@ -4,8 +4,6 @@ from models.genre import Genre
 
 
 class Book:
-
-    # Dictionary of objects saved to the database.
     all = {}
 
     def __init__(self, title, author, genre_id, id=None):
@@ -119,10 +117,8 @@ class Book:
         CURSOR.execute(sql, (self.id,))
         CONN.commit()
 
-        # Delete the dictionary entry using id as the key
         del type(self).all[self.id]
 
-        # Set the id to None
         self.id = None
 
     @classmethod
@@ -136,15 +132,12 @@ class Book:
     def instance_from_db(cls, row):
         """Return an book object having the attribute values from the table row."""
 
-        # Check the dictionary for  existing instance using the row's primary key
         book = cls.all.get(row[0])
         if book:
-            # ensure attributes match row values in case local instance was modified
             book.title = row[1]
             book.author = row[2]
             book.genre_id = row[3]
         else:
-            # not in dictionary, create new instance and add to dictionary
             book = cls(row[1], row[2], row[3])
             book.id = row[0]
             cls.all[book.id] = book
