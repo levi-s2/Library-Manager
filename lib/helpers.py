@@ -3,7 +3,7 @@ from models.genre import Genre
 from models.book import Book
 
 def exit_program():
-    print("\nGoodbye!")
+    print("\nThank you for using the Library Manager app, see you soon!")
     exit()
 
 # We'll implement the genre functions in this lesson
@@ -11,8 +11,9 @@ def exit_program():
 
 def list_genres():
     genres = Genre.get_all()
+    print('\nThese are all the genres available at the moment:')
     for genre in genres:
-        print(genre)
+        print(f'\n{genre.name}')
 
 
 def find_genre_by_name():
@@ -20,13 +21,6 @@ def find_genre_by_name():
     genre = Genre.find_by_name(name)
     print(genre) if genre else print(
         f'\ngenre {name} not found')
-
-
-def find_genre_by_id():
-    # use a trailing underscore not to override the built-in id function
-    id_ = input("\nEnter the genre's id: ")
-    genre = Genre.find_by_id(id_)
-    print(genre) if genre else print(f'\ngenre {id_} not found')
 
 
 def create_genre():
@@ -76,18 +70,12 @@ def find_book_by_title():
         f'\nbook {title} not found')
 
 
-def find_book_by_id():
-    id_ = input("Enter the book's id: ")
-    book = Book.find_by_id(id_)
-    print(book) if book else print(f'book {id_} not found')
-
-
 def create_book():
     title = input("Enter the book's title: ")
     author = input("Enter the book's author: ")
-    genre_id = input("Enter the book's genre id:")
+    genre_name = input("Enter the book's genre name:")
     try:
-        book = Book.create(title, author, genre_id)
+        book = Book.create(title, author, genre_name)
         print(f'Success: {book}')
     except Exception as exc:
         print("Error creating book: ", exc)
@@ -121,9 +109,9 @@ def delete_book():
 
 
 def list_genre_books():
-    id_ = input("Enter the genre's id: ")
-    if genre := Genre.find_by_id(id_):
+    name = input("Enter the genre's name: ")
+    if genre := Genre.find_by_name(name):
         for book in genre.books():
             print(book)
     else:
-        print(f'genre {id_} not found')
+        print(f'genre {name} not found')

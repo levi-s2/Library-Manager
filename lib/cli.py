@@ -1,14 +1,11 @@
 from helpers import (
     exit_program,
     list_genres,
-    find_genre_by_name,
-    find_genre_by_id,
     create_genre,
     update_genre,
     delete_genre,
     list_books,
     find_book_by_title,
-    find_book_by_id,
     create_book,
     update_book,
     delete_book,
@@ -25,28 +22,22 @@ def main():
         elif choice == "1":
             list_genres()
         elif choice == "2":
-            find_genre_by_name()
-        elif choice == "3":
-            find_genre_by_id()
-        elif choice == "4":
             create_genre()
-        elif choice == "5":
+        elif choice == "3":
             update_genre()
-        elif choice == "6":
+        elif choice == "4":
             delete_genre()
-        elif choice == "7":
+        elif choice == "5":
             list_books()
-        elif choice == "8":
+        elif choice == "6":
             find_book_by_title()
-        elif choice == "9":
-            find_book_by_id()
-        elif choice == "10":
+        elif choice == "7":
             create_book()
-        elif choice == "11":
+        elif choice == "8":
             update_book()
-        elif choice == "12":
+        elif choice == "9":
             delete_book()
-        elif choice == "13":
+        elif choice == "10":
             list_genre_books()
         else:
             print("\nInvalid choice")
@@ -55,19 +46,16 @@ def main():
 def menu():
     print("\nPlease select an option:")
     print("\n0. Exit the program")
-    print("\n1. List all genres")
-    print("\n2. Find genre by name")
-    print("\n3. Find genre by id")
-    print("\n4: Create genre")
-    print("\n5: Update genre")
-    print("\n6: Delete genre")
-    print("\n7. List all books")
-    print("\n8. Find book by title")
-    print("\n9. Find book by id")
-    print("\n10: Create book")
-    print("\n11: Update book")
-    print("\n12: Delete book")
-    print("\n13: List all books in a genre\n")
+    print("\n1. Get a list of all Genres")
+    print("\n2: Create a new genre")
+    print("\n3: Update an existing genre")
+    print("\n4: Delete an existing genre")
+    print("\n5. Get a list of all available books")
+    print("\n6. Find a especific book by title")
+    print("\n7: Order a new Book")
+    print("\n8: Update a existing book")
+    print("\n9: Delete a book")
+    print("\n10: Get a list of all books belonging to a genre\n")
 
 
 if __name__ == "__main__":
