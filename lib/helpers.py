@@ -10,8 +10,10 @@ def exit_program():
 def list_genres():
     genres = Genre.get_all()
     print('\nThese are all the genres available at the moment:')
+    index = 1
     for genre in genres:
-        print(f'\n{genre.name}')
+        print(f'{index}.{genre.name}')
+        index += 1
 
 
 def find_genre_by_name():
@@ -25,7 +27,7 @@ def create_genre():
     name = input("\nEnter the genre's name: ")
     try:
         genre = Genre.create(name)
-        print(f'\nSuccess: {genre}')
+        print(f'\nSuccess,{genre.name} was added to the collection\n')
     except Exception as exc:
         print("\nError creating genre: ", exc)
 
@@ -104,10 +106,9 @@ def delete_book():
         print(f'book {id_} not found')
 
 
-def list_genre_books():
-    name = input("Enter the genre's name: ")
-    if genre := Genre.find_by_name(name):
+def list_genre_books(n):
+    if genre := Genre.find_by_id(n):
         for book in genre.books():
             print(book)
     else:
-        print(f'genre {name} not found')
+        print(f'genre {id} not found')
