@@ -22,12 +22,18 @@ def find_genre_by_name():
     print(genre) if genre else print(
         f'\ngenre {name} not found')
     
+
+def find_genre_by_id(n):
+    genre = Genre.find_by_id(n)
+    return genre
+    
+    
     
 def create_genre():
     name = input("\nEnter the genre's name: ")
     try:
         genre = Genre.create(name)
-        print(f'\nSuccess,{genre.name} was added to the collection\n')
+        print(f'\nSuccess, {genre.name} was added to the collection\n')
     except Exception as exc:
         print("\nError creating genre: ", exc)
 
@@ -47,12 +53,12 @@ def update_genre():
 
 
 def delete_genre():
-    id_ = input("\nEnter the genre's id: ")
+    id_ = input("\ntype the number of the genre you want to delete: ")
     if genre := Genre.find_by_id(id_):
         genre.delete()
-        print(f'\ngenre {id_} deleted')
+        print(f'\nGenre {genre.name} deleted\n')
     else:
-        print(f'\ngenre {id_} not found')
+        print(f'\ngenre not found')
 
 
 def list_books():
@@ -107,8 +113,10 @@ def delete_book():
 
 
 def list_genre_books(n):
+    index = 1
     if genre := Genre.find_by_id(n):
         for book in genre.books():
-            print(book)
+            print(f'{index}.Title {book.title}, Author: {book.author}, Genre: {genre.name}')
+            index += 1
     else:
         print(f'genre {id} not found')

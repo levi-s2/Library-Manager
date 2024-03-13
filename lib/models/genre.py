@@ -9,8 +9,8 @@ class Genre:
         self.id = id
         self.name = name
 
-    def __repr__(self):
-        return f"<Genre {self.id}: {self.name}>"
+    #def __repr__(self):
+      #  return f"<Genre {self.id}: {self.name}>"
 
     @property
     def name(self):
