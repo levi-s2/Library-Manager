@@ -38,14 +38,14 @@ def create_genre():
         print("\nError creating genre: ", exc)
 
 
-def update_genre():
-    id_ = input("\nEnter the genre's id: ")
+def update_genre(n):
+    id_ = n
     if genre := Genre.find_by_id(id_):
         try:
             name = input("\nEnter the genre's new name: ")
             genre.name = name
             genre.update()
-            print(f'\nSuccess: {genre}')
+            print(f'\nSuccess! genre name updated to {genre.name}')
         except Exception as exc:
             print("\nError updating genre: ", exc)
     else:
@@ -63,8 +63,10 @@ def delete_genre():
 
 def list_books():
     books = Book.get_all()
+    index = 1
     for book in books:
-        print(book)
+        print(f'{ index}.Title {book.title}, Author: {book.author}')
+        index += 1
 
 
 def find_book_by_title():
@@ -74,13 +76,13 @@ def find_book_by_title():
         f'\nbook {title} not found')
 
 
-def create_book():
+def create_book(n):
     title = input("Enter the book's title: ")
     author = input("Enter the book's author: ")
-    genre_id = input("Enter the book's genre ID:")
+    genre_id = n
     try:
         book = Book.create(title, author, int(genre_id))
-        print(f'Success: {book}')
+        print(f'Success! Book {book.title} was added to the collection')
     except Exception as exc:
         print("Error creating book: ", exc)
 
@@ -104,10 +106,10 @@ def update_book():
 
 
 def delete_book():
-    id_ = input("Enter the book's id: ")
+    id_ = input("Type the number of the book you want to delete: ")
     if book := Book.find_by_id(id_):
         book.delete()
-        print(f'book {id_} deleted')
+        print(f'book {book.title} deleted')
     else:
         print(f'book {id_} not found')
 
@@ -115,8 +117,9 @@ def delete_book():
 def list_genre_books(n):
     index = 1
     if genre := Genre.find_by_id(n):
+        print(f'\nThese are all the books belonging to the {genre.name} genre:\n')
         for book in genre.books():
-            print(f'{index}.Title {book.title}, Author: {book.author}, Genre: {genre.name}')
-            index += 1
+                print(f'{ index}.Title {book.title}, Author: {book.author}, Genre: {genre.name}')
+                index += 1
     else:
         print(f'genre {id} not found')
