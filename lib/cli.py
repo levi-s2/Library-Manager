@@ -7,7 +7,6 @@ from helpers import (
     update_genre,
     delete_genre,
     list_books,
-    find_book_by_title,
     create_book,
     update_book,
     delete_book,
@@ -43,17 +42,13 @@ def main_menu():
 
 def genres_menu():
     print("You´re currently on the genre menu")
-    print("\n1. See all genres")
-    print("2. Add a new genre")
-    print("3. Go back to the main menu")
+    print("\n0. Go back to the main menu")
+    print("1. See all genres")
     while True:
         choice = input(">")
         if choice == "1":
             display_genre_menu()
-        elif choice == "2":
-            create_genre()
-            genres_menu()
-        elif choice == "3":
+        elif choice == "0":
             main_menu()
 
 
@@ -66,19 +61,16 @@ def books_menu():
         choice = input(">")
         if choice == "1":
             display_books_menu()
-            print('\nTo manage or add a book, please, refer back to the main menu')
-            print('\n0. Go to main menu')
-            if choice == '0':
-                main_menu()
         elif choice == "0":
             main_menu()
 
 
 def display_genre_menu():
     list_genres()
-    print("\nChoose the number of genre to see its options, or:")
+    print("\nChoose the number of the genre to see its options, or:")
     print("Press 0 to go back to the genre menu")
-    print("Press d to delete a genre\n")
+    print('Press A to Add a genre to the collection')
+    print("Press D to delete a genre\n")
     while True:
         user_choice = input(">")
         if user_choice == '0':
@@ -86,24 +78,28 @@ def display_genre_menu():
         elif user_choice == "d":
              delete_genre()
              display_genre_menu()
-        elif int(user_choice) in range(len(genres)):
+        elif user_choice == "a":
+            create_genre()
+            display_genre_menu()
+        elif int(user_choice) in range(len(genres) + 1):
             genre_options(user_choice)
 
 
 def display_books_menu():
     list_books()
-    print('\nTo filter by genre, please, refer to the genre menu')
-    print('0. Go to main menu')
-    print('1. Go to Genre menu')
-    print('2. Delete a Book')
+    print('\nto add a book, or filter by genre, please, refer to the genre menu\n')
+    print('0. Go to genre menu')
+    print('1. Delete a Book')
+    print('2. Update a Book')
     while True:
         choice = input('>')
         if choice == '0':
-            main_menu
-        elif choice == '1':
             genres_menu()
-        elif choice == '2':
+        elif choice == '1':
             delete_book()
+            books_menu()
+        elif choice == '2':
+            update_book()
             display_books_menu()
         
 
@@ -115,15 +111,19 @@ def genre_options(user_choice):
         print("1. add a book to this genre")
         print("2. See all books of the genre")
         print("3. Update this genre")
+        print('4. Go to Books menu')
         choice = input('>')
         if choice == "1":
             create_book(user_choice)
         elif choice == "2":
             list_genre_books(user_choice)
+            print('\nTo delete or manage a book, please, refer to the Books menu\n')
         elif choice == "3":
             update_genre(user_choice)
         elif choice == "0":
             display_genre_menu()
+        elif choice == "4":
+            books_menu()
 
 
 if __name__ == "__main__":

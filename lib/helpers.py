@@ -54,11 +54,12 @@ def update_genre(n):
 
 def delete_genre():
     id_ = input("\ntype the number of the genre you want to delete: ")
-    if genre := Genre.find_by_id(id_):
-        genre.delete()
-        print(f'\nGenre {genre.name} deleted\n')
-    else:
-        print(f'\ngenre not found')
+    genre = Genre.find_by_id(id_)
+    books = genre.books()
+    for book in books:
+        book.delete()
+    print(f'{genre.name} deleted')
+    genre.delete()
 
 
 def list_books():
@@ -88,17 +89,18 @@ def create_book(n):
 
 
 def update_book():
-    id_ = input("Enter the book's id: ")
+    id_ = input("Type the number of the book to be updated: ")
     if book := Book.find_by_id(id_):
+        id = book.genre_id
         try:
             title = input("Enter the books's new title: ")
             book.title = title
-            author = input("Enter the book's new job title:")
+            author = input("Enter the book's new Author:")
             book.author = author
-            genre_id = input("Enter the books's new genre id: ")
+            genre_id = id
             book.genre_id = genre_id
             book.update()
-            print(f'Success: {book}')
+            print(f'\nSuccess, Book´s title and author were updated to Title: {book.title} and Author: {book.author}\n')
         except Exception as exc:
             print("Error updating book: ", exc)
     else:
@@ -118,8 +120,11 @@ def list_genre_books(n):
     index = 1
     if genre := Genre.find_by_id(n):
         print(f'\nThese are all the books belonging to the {genre.name} genre:\n')
-        for book in genre.books():
-                print(f'{ index}.Title {book.title}, Author: {book.author}, Genre: {genre.name}')
+        if len(genre.books()) == 0:
+            print('No books belonging to this genre are available at the moment')
+        else:
+            for book in genre.books():
+                print(f'{ index}.Title: {book.title}, Author: {book.author}, Genre: {genre.name}')
                 index += 1
     else:
         print(f'genre {id} not found')
