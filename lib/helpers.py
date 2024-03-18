@@ -52,8 +52,8 @@ def update_genre(n):
         print(f'\ngenre {id_} not found')
 
 
-def delete_genre():
-    id_ = input("\ntype the number of the genre you want to delete: ")
+def delete_genre(n):
+    id_ = n
     genre = Genre.find_by_id(id_)
     books = genre.books()
     for book in books:

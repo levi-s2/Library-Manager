@@ -76,8 +76,7 @@ def display_genre_menu():
         if user_choice == '0':
             genres_menu()
         elif user_choice == "d":
-             delete_genre()
-             display_genre_menu()
+             delete_menu()
         elif user_choice == "a":
             create_genre()
             display_genre_menu()
@@ -101,6 +100,19 @@ def display_books_menu():
         elif choice == '2':
             update_book()
             display_books_menu()
+
+def delete_menu():
+    print('Caution!\n'
+          'When you delete a genre, all books associated will also be removed')
+    print('type the number of the genre to be deleted: ')
+    print('0. Go back to main menu')
+    while True:
+        choice = input('>')
+        if choice == '0':
+            display_genre_menu()
+        else:
+            delete_genre(choice)
+            display_genre_menu()
         
 
 def genre_options(user_choice):
