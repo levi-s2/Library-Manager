@@ -37,7 +37,7 @@ def main_menu():
         elif choice == "2":
             books_menu()
         else:
-            print("\nInvalid choice")
+            print("\nInvalid choice, please select one of the options above")
 
 
 def genres_menu():
@@ -50,6 +50,8 @@ def genres_menu():
             display_genre_menu()
         elif choice == "0":
             main_menu()
+        else:
+            print("\nInvalid choice, please select one of the options above")
 
 
 def books_menu():
@@ -63,18 +65,20 @@ def books_menu():
             display_books_menu()
         elif choice == "0":
             main_menu()
+        else:
+            print("\nInvalid choice, please select one of the options above")
 
 
 def display_genre_menu():
     list_genres()
     print("\nChoose the number of the genre to see its options, or:")
-    print("Press 0 to go back to the genre menu")
+    print("Press 0 to go back to the Main menu")
     print('Press A to Add a genre to the collection')
     print("Press D to delete a genre\n")
     while True:
         user_choice = input(">")
         if user_choice == '0':
-            genres_menu()
+            main_menu()
         elif user_choice == "d":
              delete_menu()
         elif user_choice == "a":
@@ -82,6 +86,8 @@ def display_genre_menu():
             display_genre_menu()
         elif int(user_choice) in range(len(genres) + 1):
             genre_options(user_choice)
+        else:
+            print("\nInvalid choice, please select one of the options above")
 
 
 def display_books_menu():
@@ -100,14 +106,16 @@ def display_books_menu():
         elif choice == '2':
             update_book()
             display_books_menu()
+        else:
+            print("\nInvalid choice, please select one of the options above")
+
 
 def delete_menu():
     print('Caution!\n'
-          'When you delete a genre, all books associated will also be removed')
-    print('type the number of the genre to be deleted: ')
+          'When you delete a genre, all books associated will also be removed\n')
     print('0. Go back to main menu')
     while True:
-        choice = input('>')
+        choice = input('type the number of the genre to be deleted: ')
         if choice == '0':
             display_genre_menu()
         else:
@@ -119,6 +127,7 @@ def genre_options(user_choice):
     while True:
         genre = find_genre_by_id(user_choice)
         print(f"\nYou`re currently viewing all the options for the {genre.name} genre")
+        print(' To delete a book, please, refer to the Book Menu\n')
         print("\n0. Go back to genres list")
         print("1. add a book to this genre")
         print("2. See all books of the genre")
@@ -136,6 +145,8 @@ def genre_options(user_choice):
             display_genre_menu()
         elif choice == "4":
             books_menu()
+        else:
+            print("\nInvalid choice, please select one of the options above")
 
 
 if __name__ == "__main__":

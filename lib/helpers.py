@@ -56,17 +56,20 @@ def delete_genre(n):
     id_ = n
     genre = Genre.find_by_id(id_)
     books = genre.books()
-    for book in books:
-        book.delete()
-    print(f'{genre.name} deleted')
-    genre.delete()
+    if genre:= Genre.find_by_id(n):
+       for book in books:
+            book.delete()
+            print(f'{genre.name} deleted')
+            genre.delete()
+    else:
+        print('Please, type the number of one of the existing genres above to be deleted')
 
 
 def list_books():
     books = Book.get_all()
     index = 1
     for book in books:
-        print(f'{ index}.Title {book.title}, Author: {book.author}')
+        print(f'{ index}.Title: {book.title}, Author: {book.author}')
         index += 1
 
 
