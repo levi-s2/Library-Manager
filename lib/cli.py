@@ -1,4 +1,5 @@
 from models.genre import Genre
+from seed import seed_database
 from helpers import (
     exit_program,
     list_genres,
@@ -13,6 +14,7 @@ from helpers import (
     list_genre_books
 )
 genres = Genre.get_all()
+seed_database()
 
 
 def main():
