@@ -43,3 +43,6 @@ def seed_database():
     Book.create('Antigone', 'Sophocles', Non_Fiction.id)
     Book.create('Cinema Speculation', 'Quentin Tarantino', Biography.id)
     Book.create('The Diary of Anne Frank', 'Anne Frank', Biography.id)
+
+seed_database()
+print('database seeded sucessfully')

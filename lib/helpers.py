@@ -10,10 +10,8 @@ def exit_program():
 def list_genres():
     genres = Genre.get_all()
     print('\nThese are all the genres available at the moment:')
-    index = 1
-    for genre in genres:
-        print(f'{index}.{genre.name}')
-        index += 1
+    for i, genre in enumerate(genres, start=1):
+         print(i, genre.name)
 
 
 def find_genre_by_name():
@@ -38,8 +36,8 @@ def create_genre():
         print("\nError creating genre: ", exc)
 
 
-def update_genre(n):
-    id_ = n
+def update_genre(genre):
+    id_ = genre.id
     if genre := Genre.find_by_id(id_):
         try:
             name = input("\nEnter the genre's new name: ")
@@ -53,7 +51,7 @@ def update_genre(n):
 
 
 def delete_genre(n):
-    id_ = n
+    id_ = int(n)
     genre = Genre.find_by_id(id_)
     books = genre.books()
     if genre:= Genre.find_by_id(n):
@@ -80,12 +78,12 @@ def find_book_by_title():
         f'\nbook {title} not found')
 
 
-def create_book(n):
+def create_book(genre):
     title = input("Enter the book's title: ")
     author = input("Enter the book's author: ")
-    genre_id = n
+    genre_id = genre.id
     try:
-        book = Book.create(title, author, int(genre_id))
+        book = Book.create(title, author, genre_id)
         print(f'Success! Book {book.title} was added to the collection')
     except Exception as exc:
         print("Error creating book: ", exc)
@@ -119,15 +117,11 @@ def delete_book():
         print(f'book {id_} not found')
 
 
-def list_genre_books(n):
-    index = 1
-    if genre := Genre.find_by_id(n):
+def list_genre_books(genre):
         print(f'\nThese are all the books belonging to the {genre.name} genre:\n')
         if len(genre.books()) == 0:
             print('No books belonging to this genre are available at the moment')
         else:
-            for book in genre.books():
-                print(f'{ index}.Title: {book.title}, Author: {book.author}, Genre: {genre.name}')
-                index += 1
-    else:
-        print(f'genre {id} not found')
+            books = genre.books()
+            for i, book in enumerate(books, start=1):
+                print(i, f"Title: {book.title}, Author: {book.author}, {genre.name}")
