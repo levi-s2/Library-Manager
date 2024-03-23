@@ -54,9 +54,10 @@ def delete_genre(n):
     id_ = int(n)
     genre = Genre.find_by_id(id_)
     books = genre.books()
-    if genre:= Genre.find_by_id(n):
-       for book in books:
+    for book in books:
+            print(f'{book.title} deleted')
             book.delete()
+    if genre:= Genre.find_by_id(n):
             print(f'{genre.name} deleted')
             genre.delete()
     else:
@@ -89,8 +90,8 @@ def create_book(genre):
         print("Error creating book: ", exc)
 
 
-def update_book():
-    id_ = input("Type the number of the book to be updated: ")
+def update_book(n):
+    id_ = n
     if book := Book.find_by_id(id_):
         id = book.genre_id
         try:
@@ -108,8 +109,8 @@ def update_book():
         print(f'book {id_} not found')
 
 
-def delete_book():
-    id_ = input("Type the number of the book you want to delete: ")
+def delete_book(n):
+    id_ = n
     if book := Book.find_by_id(id_):
         book.delete()
         print(f'book {book.title} deleted')

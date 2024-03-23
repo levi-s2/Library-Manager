@@ -144,29 +144,38 @@ def genre_options(genre):
 
 def book_in_genre_menu(genre):
     books = genre.books()
-    print(f'These are all the available books for the {genre.name} genre: \n')
     list_genre_books(genre)
     while True:
-        print('To update or delete a book, please, select it`s number')
-        print("\n0. Go back to genres list")
+        print('\nTo update or delete a book, please, select it`s number or :')
+        print("0. Go back to genres list")
         print('Press A to Add a book to this genre')
         choice = input('>')
         if choice == "0":
             display_genre_menu()
         elif choice == 'a':
             create_book(genre)
-            book_in_genre_menu(genre)
         elif int(choice) in range(len(books) + 1):
-            books_options(choice - 1)
+            books_options(int(choice) - 1, books, genre)
+        else:
+            print("\nInvalid choice, please select one of the options above")
 
 
-def books_options(n):
+def books_options(user_choice, books, genre):
     while True:
+        book = books[user_choice]
         choice = input('>')
-        print(f'You are viewing the book')
+        print(f'You´re viewing the options for the {book.title} book\n')
         print('0. Go back to genre selection')
-        print('Type D')
-            
+        print('1. Delete book')
+        print('2. Update book')
+        if choice == '0':
+            display_genre_menu()
+        elif choice == '1':
+            delete_book(book.id)
+            genre_options(genre)
+        elif choice == '2':
+            update_book(book.id)
+            genre_options(genre)
 
         
         
