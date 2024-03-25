@@ -1,9 +1,7 @@
 from models.genre import Genre
-from seed import seed_database
 from helpers import (
     exit_program,
     list_genres,
-    find_genre_by_id,
     create_genre,
     update_genre,
     delete_genre,
@@ -95,20 +93,15 @@ def books_menu():
 
 def display_books_menu():
     list_books()
-    print('\nto add a book, or filter by genre, please, refer to the genre menu\n')
-    print('0. Go to genre menu')
-    print('1. Delete a Book')
-    print('2. Update a Book')
+    print('\nto manage a book, or filter by genre, please, refer to the genre menu\n')
+    print('0. Go to Main menu')
+    print('1. Go to genre menu')
     while True:
         choice = input('>')
         if choice == '0':
-            genres_menu()
+            main_menu()
         elif choice == '1':
-            delete_book()
-            books_menu()
-        elif choice == '2':
-            update_book()
-            display_books_menu()
+            genres_menu()
         else:
             print("\nInvalid choice, please select one of the options above")
 
@@ -155,7 +148,8 @@ def book_in_genre_menu(genre):
         elif choice == 'a':
             create_book(genre)
         elif int(choice) in range(len(books) + 1):
-            books_options(int(choice) - 1, books, genre)
+            choosen_book = int(choice) - 1
+            books_options(choosen_book, books, genre)
         else:
             print("\nInvalid choice, please select one of the options above")
 

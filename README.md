@@ -43,7 +43,13 @@ The Library manager app allows you to easily add, update and delete books and ge
     $ pipenv shell
     ```
 
-5. Run the following command to run the CLI
+5.  If you want to test the app before using it, type the following command
+    to populate the database with some mock data:
+    ```s
+    $ python lib/seed.py
+    ```
+
+6. Run the following command to run the CLI to start the App
     ```s
     $ python lib/cli.py
     ```
@@ -63,11 +69,11 @@ located in the app and how to change menus. Enjoy!
         But dont worry, this option will give the user a confirmation prompt
      4. Once a genre is choosen, you can see all books belonging to it;
         Update the genre name;
-        Go straight to the book menu so you can manage a especific book
+     5. All books can be managed from inside the genre that you are looking at
+    
     
      ### Book Menu
      1. You can see all books
-     2. You can delete or update any book
 
         
 
