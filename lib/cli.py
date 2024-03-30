@@ -178,4 +178,3 @@ def books_options(user_choice, books, genre):
 
 if __name__ == "__main__":
     main()
-
