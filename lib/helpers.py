@@ -113,7 +113,7 @@ def delete_book(n):
     id_ = n
     if book := Book.find_by_id(id_):
         book.delete()
-        print(f'book {book.title} deleted')
+        print(f'\nbook {book.title} deleted')
     else:
         print(f'book {id_} not found')
 

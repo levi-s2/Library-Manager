@@ -9,7 +9,8 @@ from helpers import (
     create_book,
     update_book,
     delete_book,
-    list_genre_books
+    list_genre_books,
+    find_genre_by_id
 )
 genres = Genre.get_all()
 
@@ -149,28 +150,29 @@ def book_in_genre_menu(genre):
             create_book(genre)
             book_in_genre_menu(genre)
         elif int(choice) in range(len(books) + 1):
-            choosen_book = int(choice) - 1
-            books_options(choosen_book, books, genre)
+            chosen_book = books[int(choice) - 1]
+            books_options(chosen_book)
         else:
             print("\nInvalid choice, please select one of the options above")
 
 
-def books_options(user_choice, books, genre):
+def books_options(chosen_book):
+    book = chosen_book
+    genre = find_genre_by_id(book.genre_id)
     while True:
-        book = books[user_choice]
-        choice = input('>')
         print(f'You´re viewing the options for the {book.title} book\n')
-        print('0. Go back to genre selection')
+        print(f'0. Go back to {genre.name} options')
         print('1. Delete book')
         print('2. Update book')
+        choice = input('>')
         if choice == '0':
-            display_genre_menu()
+            book_in_genre_menu(genre)
         elif choice == '1':
             delete_book(book.id)
-            genre_options(genre)
+            book_in_genre_menu(genre)
         elif choice == '2':
             update_book(book.id)
-            genre_options(genre)
+            book_in_genre_menu(genre)
 
         
         
