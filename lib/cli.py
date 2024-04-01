@@ -70,7 +70,7 @@ def display_genre_menu():
             create_genre()
             display_genre_menu()
         elif int(user_choice) in range(len(genres) + 1):
-            genre = genres[int(user_choice) - 1]
+            genre = genres[int(user_choice) - 1] 
             genre_options(genre)
         else:
             print("\nInvalid choice, please select one of the options above")
@@ -147,6 +147,7 @@ def book_in_genre_menu(genre):
             display_genre_menu()
         elif choice == 'a':
             create_book(genre)
+            book_in_genre_menu(genre)
         elif int(choice) in range(len(books) + 1):
             choosen_book = int(choice) - 1
             books_options(choosen_book, books, genre)

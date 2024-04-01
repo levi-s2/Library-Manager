@@ -38,7 +38,7 @@ def seed_database():
     Book.create('It(Novel)', 'Stephen King', Terror.id)
     Book.create('Percy Jackson Collection', 'Rick Riordan', Fantasy.id)
     Book.create('A droga da obediência', 'Pedro Bandeira', Novel.id)
-    Book.create('A Game of Thrones', 'George R.R. Martin', Fantasy.id)
+    Book.create('Game of Thrones', 'George R.R. Martin', Fantasy.id)
     Book.create('Cidades Mortas', 'Monteiro Lobato', Modern.id)
     Book.create('Antigone', 'Sophocles', Non_Fiction.id)
     Book.create('Cinema Speculation', 'Quentin Tarantino', Biography.id)
